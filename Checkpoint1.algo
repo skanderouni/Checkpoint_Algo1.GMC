@@ -1,0 +1,43 @@
+ALGORITHM algorithm_Words
+
+VAR
+    word : CHAR;
+    sentence : STRING;
+    NumberC : INTEGER :=0;
+    NumberW : INTEGER :=0;
+    NumberV : INTEGER :=0;
+
+BEGIN
+    write("Give me a sentence : ");
+
+    REPEAT
+        read(word);
+        sentence := sentence + word;
+
+        // Calculer la langeur de la phrase
+        NumberC := NumberC + 1;
+        
+        // Calculer le nombre de mots
+        IF (word = ' ' or ((NumberC>2) and (word = '.'))) THEN
+            NumberW := NumberW +1;
+        END_IF
+
+        // Calculer le nombre de voyelles
+        SWITCH (word) DO
+            case 'a' : NumberV := NumberV + 1; BREAK;
+            case 'e' : NumberV := NumberV + 1; BREAK;
+            case 'i' : NumberV := NumberV + 1; BREAK;
+            case 'o' : NumberV := NumberV + 1; BREAK;
+            case 'u' : NumberV := NumberV + 1; BREAK;
+            case 'y' : NumberV := NumberV + 1; BREAK;
+            default : NumberV := NumberV + 0;
+        END_SWITCH
+    
+    UNTIL (word = '.')
+
+    write ("The sentence : ",sentence);
+    write ("The length of the sentence : ",NumberC);
+    write ("The number of words in the sentence : ",NumberW);
+    write ("The number of vowels in the sentence : ",NumberV);
+
+END
